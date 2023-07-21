@@ -1,0 +1,128 @@
+body {
+    background-color: #ccdce4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+.search-bar {
+    background-color: whitesmoke;
+    width: 500px;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #707070;
+    border-radius: 25px;
+}
+
+.button {
+    background-color: whitesmoke;
+    color: #707070;
+    padding: 10px 20px;
+    border: 1px solid #707070;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 500px;
+    height: 60px;
+}
+
+.button:hover {
+    background-color: #b3c0cc;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+.slider {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow-x: scroll;
+
+}
+.container {
+    background-color: whitesmoke;
+    width: 350px;
+    height: 400px;
+    margin: 10px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #707070;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5 );
+}
+.container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 400;
+    width: 100%;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-grow: 1;
+    margin-bottom: 55px;
+}
+
+.image-container img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content {
+        width: 95%;
+    }
+
+    .container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        border-radius: 10px; /* Change border-radius for smaller screens */
+    }
+
+    .container h2 {
+        font-size: 1.0rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        height: 300px;
+    }
+
+    .image-container {
+        margin-bottom: 35px;
+    }
+}
+
+
+
+

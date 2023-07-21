@@ -1,0 +1,12 @@
+import { ethers } from 'ethers';
+
+// Replace the below values with your actual contract details
+const contractAddress = "0x5Ce25C21eCEd0f75909B60275b61230EEC3096Aa";
+const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"Received","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Withdraw","type":"event"},{"inputs":[],"name":"bob","outputs":[{"internalType":"contract IERC677","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"string","name":"_zkAddress","type":"string"}],"name":"directDeposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"fallbackReceiver","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"string","name":"_address","type":"string"}],"name":"tryPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"string","name":"_address","type":"string"}],"name":"tryPool2","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+
+// Expose a function to get the contract instance
+export function getContract() {
+  let provider = new ethers.providers.Web3Provider(window.ethereum);
+  let contract = new ethers.Contract(contractAddress, contractABI, provider);
+  return contract;
+}

@@ -1,0 +1,53 @@
+body {
+    background-color: #ccdce4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.fieldCreate {
+    background-color: whitesmoke;
+    width: 500px;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #707070;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Avenir, sans-serif;
+    font-weight: initial;
+}
+
+.fieldCreate.descriptionField {
+    height: 150px;
+    font-family: Avenir, sans-serif;
+    font-weight: 400;
+
+}
+
+.imageUpload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+.smallNote {
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+    max-width: 300px;
+    text-align: left;
+}
+
+.backButton,
+.nextButton {
+    margin: 0 85px;
+}
+

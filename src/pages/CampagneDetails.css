@@ -1,0 +1,86 @@
+.backgroundContainer {
+    
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* height: 80%; */
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #F8F8F2;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 1px solid #707070;
+    overflow: hidden;
+    background-image: radial-gradient(circle at top center, white 35%, transparent 0%);
+}
+.connect-wallet {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    margin-top: 25px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+.img-container {
+    width: 400px; 
+    /* height: 400px; */
+    /* height: 400px; Adjust the height of the image container */
+    margin-bottom: 16px;
+    object-fit: cover;
+    border-radius: 25px;
+    padding-top: 10px; 
+}
+
+
+.pageTitle {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.total-sum-bar {
+    width: 80%;
+    height: 1px;
+    background-color: #707070;
+    margin-bottom: 16px;
+    border: none;
+}
+
+.descriptionText {
+    width: 60%;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.containerButton {
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-bottom: 1px solid #2B2B2B;
+    color: #2B2B2B;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
+
+.containerButton:focus {
+    outline: none;
+}
+
+
+
