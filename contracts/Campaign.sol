@@ -12,8 +12,23 @@ contract Campaign {
         uint money;
     }
 
+     address public owner;
+
     uint public campaignCount = 0;
     mapping(uint => CampaignData) public campaigns;
+
+     constructor() {
+        // Set the transaction sender as the owner of the contract.
+        owner = msg.sender;
+    }
+
+     modifier onlyOwner() {
+        require(msg.sender == owner, "Not owner");
+        // Underscore is a special character only used inside
+        // a function modifier and it tells Solidity to
+        // execute the rest of the code.
+        _;
+    }
     
     function createCampaign(string memory _title, string memory _description, string memory _wallet, string memory _ipfs, uint _money) public returns(uint) {
         campaignCount ++;
@@ -25,5 +40,11 @@ contract Campaign {
     function getCampaign(uint _campaignId) public view returns (uint, address, string memory, string memory, string memory, string memory, uint) {
         CampaignData memory campaign = campaigns[_campaignId];
         return (campaign.id, campaign.creator, campaign.title, campaign.description, campaign.wallet, campaign.ipfs, campaign.money);
+    }
+
+    function updateAmount(uint _campaignId, uint _amount) public view onlyOwner returns(uint) {
+             CampaignData memory campaign = campaigns[_campaignId];
+             campaign.money += _amount;
+             return campaign.money;
     }
 }
