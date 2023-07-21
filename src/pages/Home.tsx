@@ -196,7 +196,9 @@ export default function Home() {
                         <strong>Error:</strong> {error}
                     </div>
                 )}
-
+                <img
+                    src="src/assets/slider.svg"  className="image-below-slider"
+                />
             </main >
         </>
     );
