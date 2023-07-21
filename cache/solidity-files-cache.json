@@ -957,8 +957,8 @@
       ]
     },
     "/Users/dimitrov/Desktop/ETHHack/ETHN/ZkFundMe/contracts/Campaign.sol": {
-      "lastModificationDate": 1689969068455,
-      "contentHash": "2178a5db694dca9346e9d42aea00b72d",
+      "lastModificationDate": 1689972983090,
+      "contentHash": "91a7efd860095e96fbcbdf8bb26c28f4",
       "sourceName": "contracts/Campaign.sol",
       "solcConfig": {
         "version": "0.8.6",

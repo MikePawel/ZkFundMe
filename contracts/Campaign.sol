@@ -42,12 +42,11 @@ contract Campaign {
         return (campaign.id, campaign.creator, campaign.title, campaign.description, campaign.wallet, campaign.ipfs, campaign.money);
     }
 
-    function updateAmount(uint _campaignId, uint _amount) public view onlyOwner {
-             CampaignData memory campaign = campaigns[_campaignId];
-             campaign.money += _amount;
+     function updateAmount(uint _campaignId, uint _amount) public onlyOwner {
+        campaigns[_campaignId].money += _amount;
     }
 
-    
+
 
     function balance(uint _campaignId) public view returns(uint) {
              CampaignData memory campaign = campaigns[_campaignId];

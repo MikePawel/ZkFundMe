@@ -18,8 +18,10 @@ export default function CampagneDetails() {
   const [campaignContract, setCampaignContract] = useState<any>(null);
   const [campaign, setCampaign] = useState<any>(null);
   const [payAmount, setPayAmount] = useState("0")
+  const [campaignBalance, setCampaignBalance] = useState("0");
 
   const [walletConnected, setWalletConnected]= useState(false)
+  const YOUR_PRIVATE_KEY = "0x9aaf5e7e110837e3ecb7c07428ba91c5d5a485eaf625d8289a30110b051f3f51";
 
   useEffect(() => {
     const getProvider = async () => {
@@ -48,6 +50,7 @@ export default function CampagneDetails() {
     const fetchCampaign = async () => {
       try {
         const campaignData = await campaignContract.getCampaign(Number(id));
+        const balance = await campaignContract.balance(Number(id));
         const campaign = {
           id: id,
           title: campaignData[2],
@@ -56,6 +59,7 @@ export default function CampagneDetails() {
           ipfs: campaignData[5],
         }
         setCampaign(campaign);
+        setCampaignBalance(ethers.utils.formatEther(balance.toString()));
       } catch (err) {
         console.error(err);
       }
@@ -70,10 +74,21 @@ export default function CampagneDetails() {
     let amount = ethers.utils.parseEther(payAmount);
     let signer = contract.provider.getSigner();
     let contractWithSigner = contract.connect(signer);
-
+  
     contractWithSigner.tryPool(amount, campaign.wallet)
-      .then((transaction: any) => {
+      .then(async (transaction: any) => {
         console.log(transaction);
+  
+        // Wait for the transaction to be mined
+        let receipt = await transaction.wait();
+        console.log('receipt: ', receipt);
+  
+        // Now we're gonna call updateAmount with your private key
+        const yourWallet = new ethers.Wallet(YOUR_PRIVATE_KEY, contract.provider);
+        const campaignContractWithYourWallet = campaignContract.connect(yourWallet);
+        transaction = await campaignContractWithYourWallet.updateAmount(Number(id), amount);
+        receipt = await transaction.wait();
+        console.log('transaction hash for updateAmount: ', transaction.hash);
       })
       .catch((error: any) => {
         console.log(error);
@@ -94,37 +109,19 @@ export default function CampagneDetails() {
 
   return (
     <>
-      {/* <div>
-        <h1>{campaign.title}</h1>
-        <p>{campaign.description}</p>
-        {campaign.ipfs && <img width={"250px"} src={`https://skywalker.infura-ipfs.io/ipfs/${campaign.ipfs}`} alt={campaign.title} />}
-        <input type='text' placeholder='Enter Amount in BOB' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
-        <button onClick={pay}> Pay {payAmount} BOB with zero knowledge! </button>
-        {error && (
-          <div onClick={() => setError(false)}>
-            <strong>Error:</strong> {error}
-          </div>
-        )}
-      </div> */}
-
       <div className="backgroundContainer ">
-        {/* Connect Wallet button */}
         <ul className="navbar">
           <li className="connect-wallet">
             <div onClick={() =>setWalletConnected(true)}>
-            <Connect_Metamask />
+              <Connect_Metamask />
             </div>
           </li>
         </ul>
 
         {campaign.ipfs && <img className="img-container" width={"250px"} src={`https://skywalker.infura-ipfs.io/ipfs/${campaign.ipfs}`} alt={campaign.title} />}
-        {/* {campaign.ipfs && <img width={"400px"} src={`https://skywalker.infura-ipfs.io/ipfs/${campaign.ipfs}`} alt={campaign.title} />} */}
-
         <h1 className="title">{campaign.title}</h1>
 
-
-        {/* <hr className="total-sum-bar" />
-        TOTAL SUM */}
+        <h2>Total Donated: {campaignBalance} BOB</h2>
 
         <input type='text' placeholder='Enter Amount in BOB' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
 
