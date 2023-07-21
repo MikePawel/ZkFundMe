@@ -48,10 +48,10 @@ body {
 .slider {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 75%;
     overflow-x: scroll;
-
 }
+
 .container {
     background-color: whitesmoke;
     width: 350px;
