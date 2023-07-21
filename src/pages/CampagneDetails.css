@@ -1,28 +1,3 @@
-.backgroundContainer {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    /* height: 80%; */
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #F8F8F2;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border: 1px solid #707070;
-    overflow: hidden;
-    background-image: radial-gradient(circle at top center, white 35%, transparent 0%);
-}
-.connect-wallet {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    margin-top: 25px;
-}
-
 .navbar {
     position: fixed;
     top: 0;
@@ -32,21 +7,36 @@
 
 }
 
-.img-container {
-    width: 400px; 
-    /* height: 400px; */
-    /* height: 400px; Adjust the height of the image container */
-    margin-bottom: 16px;
-    object-fit: cover;
-    border-radius: 25px;
-    padding-top: 10px; 
+.connect-wallet {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    margin-top: 25px;
 }
 
+.backgroundContainer {
+    background-color: whitesmoke;
+    width: 600px;
+    border-radius: 0 0 25px 25px; /* 25px for bottom left and right corners, 0 for top left and right corners */
+}
 
-.pageTitle {
-    font-size: 16px;
-    font-weight: 300;
-    margin-bottom: 20px;
+.squareContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin-top: 0px;
+
+}
+
+.img-container {
+    width: 95%;
+    margin-top: 125px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border-radius: 0 0 25px 25px;
+
 }
 
 .total-sum-bar {
@@ -66,19 +56,18 @@
 }
 
 
-.containerButton {
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-bottom: 1px solid #2B2B2B;
-    color: #2B2B2B;
-    cursor: pointer;
-    padding: 0;
-    background: none;
+.backButton,
+.donateButton {
+    margin: 0 85px;
+    color: whitesmoke;
+    background-color: #213547;
+
 }
 
-.containerButton:focus {
-    outline: none;
+.backButton:hover,
+.donateButton:hover {
+    color: #213547;
+    background-color: whitesmoke;
 }
 
 

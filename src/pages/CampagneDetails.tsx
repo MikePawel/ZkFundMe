@@ -109,7 +109,8 @@ export default function CampagneDetails() {
 
   return (
     <>
-      <div className="backgroundContainer ">
+      <div className="backgroundContainer">
+        <div className="squareContainer">
         <ul className="navbar">
           <li className="connect-wallet">
             <div onClick={() =>setWalletConnected(true)}>
@@ -137,16 +138,17 @@ export default function CampagneDetails() {
             {campaign.description}
           </p>
         </div>
-        <div>
+          <div className="buttons">
           <Link to="/Home">
-            <button className='bottomButton leftButton'>
+            <button className='backButton'>
               Back
             </button>
           </Link>
-          <button onClick={pay} className="bottomButton rightButton">DONATE</button>
+          <button onClick={pay} className="donateButton">DONATE</button>
         </div>
         {!walletConnected && 
         <p>Please connect your wallet to start donation!</p>}
+      </div>
       </div>
     </>
   );
