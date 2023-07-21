@@ -43,7 +43,7 @@ function Picture_Upload({ onUpload }) {
           {/* <h1>Upload your file</h1> */}
           {selectedImage && (
             <div>
-              <img alt="not found"  width={"250px"}  src={URL.createObjectURL(selectedImage)} />
+              <img class="imageUpload" alt="not found"  width={"250px"}  src={URL.createObjectURL(selectedImage)} />
               <br />
             </div>
           )}

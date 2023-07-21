@@ -42,12 +42,16 @@ button.fieldCreate {
 }
 
 .imageUpload {
+    width: 500px;
+    border-radius: 25px;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+    height: 30vh;
+    object-fit: cover;
 
+}
 
 .smallNote {
     font-size: 11px;
