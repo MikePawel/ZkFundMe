@@ -38,7 +38,7 @@ const App = () => {
             </nav>
 
             <div className="logo">
-                <img src="src/assets/logo.png" alt="Logo" className="logo" />
+                <img src="src/assets/LOGO.svg" alt="Logo" className="logo" />
                 </div>
 
             <Routes>

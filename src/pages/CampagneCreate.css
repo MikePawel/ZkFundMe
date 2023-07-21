@@ -8,6 +8,14 @@ body {
     margin: 0;
 }
 
+.containerCreate {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
 .fieldCreate {
     background-color: whitesmoke;
     width: 500px;
@@ -20,13 +28,18 @@ body {
     font-size: 14px;
     font-family: Avenir, sans-serif;
     font-weight: initial;
+    color: #213547;
+}
+
+button.fieldCreate {
+    width: 522px;
 }
 
 .fieldCreate.descriptionField {
     height: 150px;
     font-family: Avenir, sans-serif;
     font-weight: 400;
-
+    color: #213547;
 }
 
 .imageUpload {
@@ -43,11 +56,20 @@ body {
     color: #888;
     margin-top: 10px;
     max-width: 300px;
-    text-align: left;
+    text-align: center;
 }
 
 .backButton,
 .nextButton {
     margin: 0 85px;
+    color: whitesmoke;
+    background-color: #213547;
+
+}
+
+.backButton:hover,
+.nextButton:hover {
+    color: #213547;
+    background-color: whitesmoke;
 }
 

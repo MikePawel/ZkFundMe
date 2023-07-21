@@ -10,3 +10,37 @@ form {
     align-items: center;
 }
 
+.UploadField{
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the icon horizontally */
+    background-color: whitesmoke;
+    width: 500px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #707070;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.uploadIconButton {
+    margin: 0;
+}
+.uploadText {
+    font-size: 12px;
+    color: #707070;
+}
+
+.UploadField:hover {
+    color:whitesmoke;
+    background-color:  #213547;
+}
+
+.UploadField:hover .uploadIconButton {
+    color: whitesmoke;
+}
+
+/* Hover effect on the upload text */
+.UploadField:hover .uploadText {
+    color: whitesmoke;
+}

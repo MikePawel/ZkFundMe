@@ -74,16 +74,15 @@ export default function CampagneCreate() {
   return (
     <>
     {/* Hier der HTML Code fürs Design */}
-     <div className="content">
+     <div className="containerCreate">
       <div className="pageTitle">
         <h2>Start your own Campaign</h2>
 
       </div>
         
       <Picture_Upload onUpload={handleUpload} />
-      <p className="smallNote">Upload an image in JPG or PNG for best. The recommended image dimensions are 400x400 pixels.</p>
-        {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
 
+        {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
         <input type="text" placeholder="Enter Title" className="fieldCreate" value={title}
             onChange={(e) => setTitle(e.target.value)}/>
         {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
@@ -108,7 +107,7 @@ export default function CampagneCreate() {
           />
 
 
-        <div className="imageUpload">
+        <div className="imageUpload" >
 
         {ipfs!="" &&<button onClick={createCampaign}>Create Campaign</button>}
        </div>

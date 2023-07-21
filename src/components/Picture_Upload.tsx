@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import { Button } from "@mui/material";
 import './Picture_Upload.css'
+import IconButton from '@mui/material/IconButton';
+import UploadIcon from '@mui/icons-material/Upload';
 
 const projectId = import.meta.env.VITE_IPFS_PROJECT_ID;
 const projectSecretKey = import.meta.env.VITE_IPFS_PROJECT_KEY;
@@ -33,7 +34,7 @@ function Picture_Upload({ onUpload }) {
     console.log("Uploaded IPFS link: ", "https://skywalker.infura-ipfs.io/ipfs/" + result.path); // Log the IPFS link
   
     form.reset();
-  };  
+  };
 
   return (
     <div>
@@ -42,29 +43,32 @@ function Picture_Upload({ onUpload }) {
           {/* <h1>Upload your file</h1> */}
           {selectedImage && (
             <div>
-              <img
-                alt="not found"
-                width={"250px"}
-                src={URL.createObjectURL(selectedImage)}
-              />
+              <img alt="not found"  width={"250px"}  src={URL.createObjectURL(selectedImage)} />
               <br />
             </div>
           )}
-          <form onSubmit={onSubmitHandler} className="formContainer">
-            <input
-              id="file-upload"
-              type="file"
-              name="file"
-              className="fieldCreate"
-              onChange={(event) => {
-                console.log(event.target.files[0]);
-                setSelectedImage(event.target.files[0]);
-              }}
-            />
-            <button className="fieldCreate" type="submit" >
+          <form onSubmit={onSubmitHandler} className="formContainer" >
+
+            <input id="file-upload" type="file" name="file" className="fieldCreate"
+                onChange={(event) => {
+                  console.log(event.target.files[0]);
+                  setSelectedImage(event.target.files[0]);
+                }}
+                   style={{ display: 'none' }}
+             />
+
+            <label htmlFor="file-upload" className="UploadField" >
+              <IconButton component="span" className="uploadIconButton">
+                <UploadIcon />
+                <span className="uploadText">Upload Image</span>
+              </IconButton>
+            </label>
+            <p className="smallNote">Upload an image in JPG or PNG for best. The recommended image dimensions are 400x400 pixels.</p>
+            <button className="fieldCreate" type="submit">
               Upload To IPFS
             </button>
           </form>
+
 
         </div>
       ) : null}

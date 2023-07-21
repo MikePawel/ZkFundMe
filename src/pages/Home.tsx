@@ -141,7 +141,10 @@ export default function Home() {
             </nav>
             <main className="content">
                 {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
+                <div className="pageTitle">
+                    <h2>Welcome to zkFundMe!</h2>
 
+                </div>
                 <Link to="/Create">
                     <button className="button" onClick={handleButtonClick}>
                         Start Your Own Campaign
