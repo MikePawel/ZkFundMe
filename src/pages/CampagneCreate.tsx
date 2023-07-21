@@ -101,18 +101,14 @@ export default function CampagneCreate() {
         <input
             required
             type="text"
-            placeholder="Enter your WalletID"
+            placeholder="Enter Your zkBOB Address"
             value={wallet} 
             onChange={(e) => setWallet(e.target.value)}
             className="fieldCreate"
           />
 
-        {/* Image Upload */}
 
         <div className="imageUpload">
-          {/* <label htmlFor="imageInput">Upload Your Campaign Image</label>
-          <input type="file" id="imageInput" accept="image/*"  /> */}
-          {/* <p className="smallNote">Upload an image in JPG or PNG for best. The recommended image dimensions are 400x400 pixels.</p> */}
 
         {ipfs!="" &&<button onClick={createCampaign}>Create Campaign</button>}
        </div>

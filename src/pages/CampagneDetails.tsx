@@ -140,10 +140,6 @@ export default function CampagneDetails() {
             {campaign.description}
           </p>
         </div>
-        {/* <p>ID from URL: {urlId}</p> */}
-        <span className="containerButton">View More</span>
-        {/* <button className="bottomButton leftButton">
-            <Link to="/List"> BACK</Link></button> */}
         <div>
           <Link to="/Home">
             <button className='bottomButton leftButton'>
