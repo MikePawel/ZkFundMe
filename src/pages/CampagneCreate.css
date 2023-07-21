@@ -4,8 +4,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
 }
 
 .containerCreate {
@@ -14,6 +12,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    margin-top: 120px;
 }
 
 .fieldCreate {
@@ -43,11 +42,10 @@ button.fieldCreate {
 }
 
 .imageUpload {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 300px;
-    margin: 0 auto;
 }
 
 

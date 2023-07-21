@@ -27,6 +27,7 @@
     align-items: center;
     position: relative;
     margin-top: 0px;
+    height: 95vh;
 
 }
 
@@ -69,6 +70,17 @@
     color: #213547;
     background-color: whitesmoke;
 }
+
+.donationNote {
+    font-size: 14px;
+    font-weight: 500;
+    color: #c30000;
+    max-width: 100%; /* Set a maximum width to prevent overflowing */
+    overflow: hidden; /* Hide any overflowing text */
+    white-space: nowrap; /* Prevent the text from wrapping */
+    text-overflow: ellipsis; /* Show an ellipsis (...) if the text overflows */
+}
+
 
 
 

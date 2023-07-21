@@ -126,7 +126,7 @@ export default function CampagneDetails() {
 
         <input type='text' placeholder='Enter Amount in BOB' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
 
-        {Number(payAmount) > 0 && <h3> If you want to donate {payAmount} BOB with zero knowledge click on DONATE </h3>}
+        {Number(payAmount) > 0 && <h3 className="donationNote"> Join the Giving Movement: Click DONATE to Contribute {payAmount} BOB. </h3>}
         {error && (
           <div onClick={() => setError(false)}>
             <strong>Error:</strong> {error}
