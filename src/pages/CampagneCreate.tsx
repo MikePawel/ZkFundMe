@@ -123,10 +123,29 @@ export default function CampagneCreate() {
     });
   };
 
-  const onSuccess = (result: ISuccessResult) => {
+  const onSuccess = async (result: ISuccessResult) => {
     console.log("Successful Authentication");
     console.log(result);
     console.log(result.proof)
+
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118");
+    // Create a wallet instance
+    const walletM = new ethers.Wallet(PRIVATE_KEY, provider);
+
+    const contract = getCampaignContract();
+    const signer = contract.connect(walletM);
+
+    // Estimate the gas price
+    let gasPrice = await provider.getGasPrice();
+    
+    // Define a transaction with the gas limit and gas price
+    let tx = {
+      gasLimit: ethers.utils.hexlify(1000000), // arbitrary limit, you need to adjust this value
+      gasPrice: gasPrice
+    };
+
+    const result2 = await signer.verifyAndExcute();
+    console.log("Is verified:" ,result2);
 
     const unpackedProof = decodeAbiParameters([{ type: 'uint256[8]' }], result.proof as `0x${string}`)[0]
     const uint256Array = unpackedProof.map(num => num.toString());

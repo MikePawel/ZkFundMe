@@ -957,8 +957,8 @@
       ]
     },
     "/Users/dimitrov/Desktop/ETHHack/ETHN/ZkFundMe/contracts/Campaign.sol": {
-      "lastModificationDate": 1689972983090,
-      "contentHash": "91a7efd860095e96fbcbdf8bb26c28f4",
+      "lastModificationDate": 1690041452569,
+      "contentHash": "080f02ed3f173a7475c6d4114514c78a",
       "sourceName": "contracts/Campaign.sol",
       "solcConfig": {
         "version": "0.8.6",
@@ -988,7 +988,9 @@
         "^0.8.6"
       ],
       "artifacts": [
-        "Campaign"
+        "ByteHasher",
+        "Campaign",
+        "IWorldID"
       ]
     },
     "/Users/dimitrov/Desktop/ETHHack/ETHN/ZkFundMe/contracts/DirectPayment.sol": {
