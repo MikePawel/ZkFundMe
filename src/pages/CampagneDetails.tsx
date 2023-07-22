@@ -120,22 +120,22 @@ export default function CampagneDetails() {
     <>
       <div className="backgroundContainer">
         <div className="squareContainer">
-        <ul className="navbar">
+        {/* <ul className="navbar">
           <li className="connect-wallet">
             <div onClick={() =>setWalletConnected(true)}>
               <Connect_Metamask />
             </div>
           </li>
-        </ul>
+        </ul> */}
 
         {campaign.ipfs && <img className="img-container" width={"250px"} src={`https://skywalker.infura-ipfs.io/ipfs/${campaign.ipfs}`} alt={campaign.title} />}
         <h1 className="title">{campaign.title}</h1>
 
-        <h2>Total Donated: {campaignBalance} BOB</h2>
+        <h2>Total Donated: {campaignBalance} USDC</h2>
 
-        <input type='text' placeholder='Enter Amount in BOB' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
+        {/* <input type='text' placeholder='Enter Amount in BOB' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} /> */}
 
-        {Number(payAmount) > 0 && <h3 className="donationNote"> Join the Giving Movement: Click DONATE to Contribute {payAmount} BOB. </h3>}
+        {Number(payAmount) > 0 && <h3 className="donationNote"> Join the Giving Movement: Click DONATE to Contribute {payAmount} USDC. </h3>}
         {error && (
           <div onClick={() => setError(false)}>
             <strong>Error:</strong> {error}
@@ -147,6 +147,8 @@ export default function CampagneDetails() {
             {campaign.description}
           </p>
         </div>
+        <input type='text' placeholder='Enter Amount in USDC' value={payAmount} onChange={(e) => setPayAmount(e.target.value)} />
+        <Connect_Metamask />
           <div className="buttons">
           <Link to="/Home">
             <button className='backButton'>
@@ -154,6 +156,7 @@ export default function CampagneDetails() {
             </button>
           </Link>
           <button onClick={pay} className="donateButton">DONATE</button>
+          
         </div>
         {!walletConnected && 
         <p>Please connect your wallet to start donation!</p>}

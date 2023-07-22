@@ -7,9 +7,9 @@ const Connect_Metamask = () => {
   const initialState = { accounts: [], balance: "", chainId: "" }
   const [wallet, setWallet] = useState(initialState)
 
-  const [isConnecting, setIsConnecting] = useState(false)  /* New */
-  const [error, setError] = useState(false)                /* New */
-  const [errorMessage, setErrorMessage] = useState("")     /* New */
+  const [isConnecting, setIsConnecting] = useState(false)  
+  const [error, setError] = useState(false)                
+  const [errorMessage, setErrorMessage] = useState("")     
 
 
   useEffect(() => {
@@ -59,20 +59,20 @@ const Connect_Metamask = () => {
     setWallet({ accounts, balance, chainId })
   }
 
-  const handleConnect = async () => {                   /* Updated */
-    setIsConnecting(true)                               /* New */
-    await window.ethereum.request({                     /* Updated */
+  const handleConnect = async () => {                   
+    setIsConnecting(true)                           
+    await window.ethereum.request({                     
       method: "eth_requestAccounts",
     })
-    .then((accounts:[]) => {                            /* New */
-      setError(false)                                   /* New */
-      updateWallet(accounts)                            /* New */
-    })                                                  /* New */
-    .catch((err:any) => {                               /* New */
-      setError(true)                                    /* New */
-      setErrorMessage(err.message)                      /* New */
-    })                                                  /* New */
-    setIsConnecting(false)                              /* New */
+    .then((accounts:[]) => {                            
+      setError(false)                               
+      updateWallet(accounts)                        
+    })
+    .catch((err:any) => {                           
+      setError(true)
+      setErrorMessage(err.message)
+    })                                              
+    setIsConnecting(false)                          
   }
 
   const formatString = (inputString: string): string => {
@@ -89,19 +89,14 @@ const Connect_Metamask = () => {
 
   return (
     <div >
-      {/* <div>Injected Provider {hasProvider ? 'DOES' : 'DOES NOT'} Exist</div> */}
 
       {window.ethereum?.isMetaMask && wallet.accounts.length < 1 &&
-                /* Updated */
         <button disabled={disableConnect} onClick={handleConnect}>Connect MetaMask</button>
       }
 
       {wallet.accounts.length > 0 &&
         <>
           <div>Wallet Account: {formatString(wallet.accounts[0])}</div>
-          {/* <div>Wallet Balance: {wallet.balance}</div>
-          <div>Hex ChainId: {wallet.chainId}</div>
-          <div>Numeric ChainId: {formatChainAsNum(wallet.chainId)}</div> */}
         </>
       }
       { error && (                                        
