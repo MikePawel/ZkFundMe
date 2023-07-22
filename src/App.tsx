@@ -10,7 +10,10 @@ import Test2 from './pages/Test2';
 import Picture_Upload from './components/Picture_Upload';
 import TetsMetamask from './pages/TetsMetamask';
 
+
 const App = () => {
+
+    
     return (
         <>
             <nav className="navbar">
@@ -50,7 +53,7 @@ const App = () => {
                 <Route path="/Details/:id" element={<CampagneDetails/>}/>
 
                 <Route path="/List" element={<CampagneList />} />
-                <Route path="/Test/:id" element={<Test />} />
+                <Route path="/Test" element={<Test />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

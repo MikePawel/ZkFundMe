@@ -30,7 +30,9 @@ export default function CampagneCreate() {
   const onSuccess = (result: ISuccessResult) => {
     console.log("Successful Authentication");
     console.log(result);
-    handleVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
+
+    // changed for on chain integration:
+    // handleVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
     // newVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
     setAuthenticated(true);
   };
