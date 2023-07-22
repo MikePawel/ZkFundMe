@@ -1,3 +1,4 @@
+
 :root {
   font-family: Avenir, sans-serif;
   line-height: 1.5;
@@ -29,9 +30,9 @@ a:hover {
 }*/
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.2em;
   line-height: 1.1;
-  color: #2B2B2B;
+  color: #213547;
 }
 
 button {

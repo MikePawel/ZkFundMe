@@ -4,8 +4,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
 }
 
 .containerCreate {
@@ -14,6 +12,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    margin-top: 120px;
 }
 
 .fieldCreate {
@@ -43,13 +42,16 @@ button.fieldCreate {
 }
 
 .imageUpload {
+    width: 500px;
+    border-radius: 25px;
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 300px;
-    margin: 0 auto;
-}
+    height: 30vh;
+    object-fit: cover;
 
+}
 
 .smallNote {
     font-size: 11px;

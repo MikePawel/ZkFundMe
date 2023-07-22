@@ -4,8 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
+
 }
 
 
@@ -39,6 +38,7 @@ body {
 
 .content {
     display: flex;
+    margin-top: 125px;
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -51,7 +51,11 @@ body {
     width: 75%;
     overflow-x: scroll;
 }
-
+.image-below-slider {
+    max-width: 30px; /* Adjust the width as needed */
+    display: block;
+    margin: 20px auto; /* Adjust the margin as needed */
+}
 .container {
     background-color: whitesmoke;
     width: 350px;
@@ -86,15 +90,16 @@ body {
     justify-content: center;
     align-items: flex-end;
     flex-grow: 1;
-    margin-bottom: 55px;
+    margin-bottom: 25px;
 }
 
 .image-container img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 50%;
+    width: 280px;
+    height: 180px;
+    border-radius: 25px;
     object-fit: cover;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
