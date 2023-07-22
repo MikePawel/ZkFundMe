@@ -138,25 +138,25 @@ export default function CampagneCreate() {
     const contract = getCampaignContract();
     const signer = contract.connect(walletM);
 
-    // Estimate the gas price
-    let gasPrice = await provider.getGasPrice();
-    
+    const gasPrice = await provider.getGasPrice();
+    const overrides = {
+      maxFeePerGas: gasPrice.mul(2), // set max fee per gas as twice the current gas price
+      maxPriorityFeePerGas: gasPrice.div(2), // set max priority fee per gas as half the current gas price
+    };
+
+
     // Define a transaction with the gas limit and gas price
     let tx = {
       gasLimit: ethers.utils.hexlify(1000000), // arbitrary limit, you need to adjust this value
-      gasPrice: gasPrice
+      gasPrice: gasPrice.mul(2)
     };
 
-    const result2 = await signer.verifyAndExcute();
-    console.log("Is verified:" ,result2);
 
-    const unpackedProof = decodeAbiParameters([{ type: 'uint256[8]' }], result.proof as `0x${string}`)[0]
-    const uint256Array = unpackedProof.map(num => num.toString());
-    console.log(uint256Array)
 
-    // changed for on chain integration:
-    // handleVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
-    // newVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
+
+    const result2 = await signer.verifyAndExcute(tx);
+    console.log("Verified with code:", result2);
+
     setAuthenticated(true);
   };
 
@@ -179,21 +179,21 @@ export default function CampagneCreate() {
       const provider = new ethers.providers.JsonRpcProvider("https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118");
       // Create a wallet instance
       const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-  
+
       const contract = getCampaignContract();
       const signer = contract.connect(wallet);
-  
+
       // Query the current gas price on the network
       const gasPrice = await provider.getGasPrice();
-  
+
       const overrides = {
         maxFeePerGas: gasPrice.mul(2), // set max fee per gas as twice the current gas price
         maxPriorityFeePerGas: gasPrice.div(2), // set max priority fee per gas as half the current gas price
       };
-  
+
       const result = await signer.createCampaign(title, description, zkwallet, ipfs, money, overrides);
       console.log("Campaign created: ", result);
-  
+
       setTitle("");
       setDescription("");
       setZkWallet("");
@@ -202,7 +202,7 @@ export default function CampagneCreate() {
     } catch (error) {
       console.error("An error occurred while creating the campaign: ", error);
     }
-  };  
+  };
 
   const handleUpload = (result: { path: any; }) => {
     const ipfsLink = result.path;
@@ -278,59 +278,64 @@ export default function CampagneCreate() {
     <>
       {/* Hier der HTML Code fürs Design */}
       <div className="containerCreate">
-        <div className="pageTitle">
-          <h2>Start your own Campaign</h2>
+        {authenticated && <>
+          <div className="pageTitle">
+            <h2>Start your own Campaign</h2>
 
-        </div>
-
-        <Picture_Upload onUpload={handleUpload} />
-
-        {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
-        <input type="text" placeholder="Enter Title" className="fieldCreate" value={title}
-          onChange={(e) => setTitle(e.target.value)} />
-        {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
-        {/* <input type="text" placeholder="Enter Title" className="fieldCreate" /> */}
-
-        {/* Description Field */}
-        <div className="containerCreate">
-          <textarea
-            placeholder="Enter Description"
-            className="fieldCreate descriptionField"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-
-          <input
-            required
-            type="text"
-            placeholder="Enter Your zkBOB Address"
-            className="fieldCreate"
-            value={zkwallet}
-            onChange={(e) => setZkWallet(e.target.value)}
-          />
-
-          <div className="imageUpload" >
-
-            {ipfs != "" && <button onClick={createCampaign}>Create Campaign</button>}
           </div>
 
-          {/* Back and Next Buttons */}
-          <div className="buttons">
-            <Link to="/Home">
-              <button className="backButton">Back</button>
-            </Link>
-            <button className="nextButton">Next</button>
+          <Picture_Upload onUpload={handleUpload} />
+
+          {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
+          <input type="text" placeholder="Enter Title" className="fieldCreate" value={title}
+            onChange={(e) => setTitle(e.target.value)} />
+          {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
+          {/* <input type="text" placeholder="Enter Title" className="fieldCreate" /> */}
+
+          {/* Description Field */}
+          <div className="containerCreate">
+            <textarea
+              placeholder="Enter Description"
+              className="fieldCreate descriptionField"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+
+            <input
+              required
+              type="text"
+              placeholder="Enter Your zkBOB Address"
+              className="fieldCreate"
+              value={zkwallet}
+              onChange={(e) => setZkWallet(e.target.value)}
+            />
+
+            <div className="imageUpload" >
+
+              {ipfs != "" && <button onClick={createCampaign}>Create Campaign</button>}
+            </div>
+
+
+
+
+            {/* Back and Next Buttons */}
+            <div className="buttons">
+              <Link to="/Home">
+                <button className="backButton">Back</button>
+              </Link>
+              <button className="nextButton">Next</button>
+            </div>
           </div>
-        </div>
+        </>}
 
         {/* Design ende */}
 
 
-        {!authenticated && <>
+        {/* {!authenticated && <>
           <button onClick={() => worldcoin_auth()} className="fieldCreate" > Authenticate with Worldcoin!</button>
         </>}
         <div>money payed: {money}</div>
-        {uploadSuccess && <p className="fieldCreate">Picture uploaded successfully!</p>} {/* Display success message if upload is successful */}
+        {uploadSuccess && <p className="fieldCreate">Picture uploaded successfully!</p>} Display success message if upload is successful */}
 
       </div>
 
@@ -346,44 +351,48 @@ export default function CampagneCreate() {
       {({ open }) => <button onClick={open}>Verify with World ID</button>}
     </IDKitWidget></div> */}
 
-      <div>
-        <IDKitWidget
-          app_id={worldAppID} // must be an app set to on-chain
-          action={worldActionName} // solidityEncode the action
-          signal={wallet.accounts[0]} // only for on-chain use cases, this is used to prevent tampering with a message
-          onSuccess={onSuccess}
-          // no use for handleVerify, so it is removed
-          credential_types={['orb']} // we recommend only allowing orb verification on-chain
-          enableTelemetry
-        >
-          {({ open }) => <button onClick={open}>Verify with World ID</button>}
-        </IDKitWidget>
-      </div>
-      <div >
-        {/* <div>Injected Provider {hasProvider ? 'DOES' : 'DOES NOT'} Exist</div> */}
+      {!authenticated && <>
+        <div >
+          {/* <div>Injected Provider {hasProvider ? 'DOES' : 'DOES NOT'} Exist</div> */}
 
-        {window.ethereum?.isMetaMask && wallet.accounts.length < 1 &&
-          /* Updated */
-          <button disabled={disableConnect} onClick={handleConnect}>Connect MetaMask</button>
-        }
+          {window.ethereum?.isMetaMask && wallet.accounts.length < 1 &&
+            /* Updated */
+            <button disabled={disableConnect} onClick={handleConnect}>Connect MetaMask</button>
+          }
 
-        {wallet.accounts.length > 0 &&
-          <>
-            <div>Wallet Account: {formatString(wallet.accounts[0])}</div>
-            {/* <div>Wallet Balance: {wallet.balance}</div>
+          {wallet.accounts.length > 0 &&
+            <>
+              <div>Wallet Account: {formatString(wallet.accounts[0])}</div>
+              {/* <div>Wallet Balance: {wallet.balance}</div>
           <div>Hex ChainId: {wallet.chainId}</div>
           <div>Numeric ChainId: {formatChainAsNum(wallet.chainId)}</div> */}
-          </>
-        }
-        {error && (
-          <div onClick={() => setError(false)}>
-            <strong>Error:</strong> {errorMessage}
-          </div>
-        )
-        }
-      </div>
+            </>
+          }
+          {error && (
+            <div onClick={() => setError(false)}>
+              <strong>Error:</strong> {errorMessage}
+            </div>
+          )
+          }
+        </div>
+        {wallet.accounts.length > 0 &&
+        <div>
+          <IDKitWidget
+            app_id={worldAppID} // must be an app set to on-chain
+            action={worldActionName} // solidityEncode the action
+            signal={wallet.accounts[0]} // only for on-chain use cases, this is used to prevent tampering with a message
+            onSuccess={onSuccess}
+            // no use for handleVerify, so it is removed
+            credential_types={['orb']} // we recommend only allowing orb verification on-chain
+            enableTelemetry
+          >
+            {({ open }) => <button onClick={open}>Verify with World ID</button>}
+          </IDKitWidget>
+        </div>}
+        
 
-      <button onClick={() => console.log(wallet.accounts[0])}>account test</button>
+      </>}
+
 
 
       <div style={{ paddingBottom: '50px' }}></div>
