@@ -5,6 +5,7 @@ import { getCampaignContract } from './ContractDetails';
 import Picture_Upload from '../components/Picture_Upload';
 import './CampagneCreate.css';
 import axios from 'axios';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 export default function CampagneCreate() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -183,7 +184,9 @@ export default function CampagneCreate() {
 
         {/* Back and Next Buttons */}
         <div className="buttons">
+          <Link to="/Home">
           <button className="backButton">Back</button>
+          </Link>
           <button className="nextButton">Next</button>
         </div>
        </div>
