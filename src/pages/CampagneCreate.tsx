@@ -18,6 +18,9 @@ export default function CampagneCreate() {
   const initialState = { accounts: [], balance: "", chainId: "" }
   const [wallet, setWallet] = useState(initialState)
 
+  const [zkwallet, setZkWallet] = useState("")
+
+
   const [isConnecting, setIsConnecting] = useState(false)  /* New */
   const [error, setError] = useState(false)                /* New */
   const [errorMessage, setErrorMessage] = useState("")     /* New */
@@ -154,25 +157,16 @@ export default function CampagneCreate() {
   const createCampaign = async () => {
     try {
       // Create a new provider
-      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118");
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/a146daf63d93490995823f0910f50118");
       // Create a wallet instance
-      const walletM = new ethers.Wallet(PRIVATE_KEY, provider);
-  
+      const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+
       const contract = getCampaignContract();
-      const signer = contract.connect(walletM);
-  
-      // Estimate the gas price
-      let gasPrice = await provider.getGasPrice();
-      
-      // Define a transaction with the gas limit and gas price
-      let tx = {
-        gasLimit: ethers.utils.hexlify(1000000), // arbitrary limit, you need to adjust this value
-        gasPrice: gasPrice
-      };
-  
-      const result = await signer.createCampaign(title, description, wallet, ipfs, money, tx);
+      const signer = contract.connect(wallet);
+
+      const result = await signer.createCampaign(title, description, zkwallet, ipfs, money);
       console.log("Campaign created: ", result);
-  
+
       setTitle("");
       setDescription("");
       setWallet("");
@@ -283,9 +277,9 @@ export default function CampagneCreate() {
             required
             type="text"
             placeholder="Enter Your zkBOB Address"
-            value={wallet}
-            onChange={(e) => setWallet(e.target.value)}
             className="fieldCreate"
+            value={zkwallet}
+            onChange={(e) => setZkWallet(e.target.value)}
           />
 
           <div className="imageUpload" >
