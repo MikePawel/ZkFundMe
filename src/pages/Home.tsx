@@ -139,6 +139,10 @@ export default function Home() {
             <div className="banner">
                     <img src="src/assets/bannerHome.png" alt="Banner" className="banner-image" />
             </div>
+            <div className="banner-content">
+                <h1 className="banner-title">Together We Rise: A Charity Revolution</h1>
+                <p className="banner-description">The digital platform where generosity finds a home and compassion knows no limits. Together, let's create a world where help is readily available and where every act of kindness has the power to transform lives forever.</p>
+            </div>
 
             <main className="content">
                 <Link to="/Create">

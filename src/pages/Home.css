@@ -152,5 +152,29 @@ body {
     object-fit: contain;
 }
 
+.banner-content {
+    position: absolute;
+    top: 50%; /* Adjust the top position to center the content vertically */
+    right: 0; /* Position the content to the right */
+    transform: translateY(-120%); /* Center the content vertically using translation */
+    text-align: right; /* Right align the text */
+    color: white; /* Set the text color */
+    padding: 20px; /* Add some padding for better readability */
+    width: 40%; /* Adjust the width of the content area */
+    margin-right: 75px;
+
+}
+
+
+.banner-title {
+    font-size: 32px; /* Adjust the font size of the title */
+    margin-bottom: 10px; /* Add some spacing between title and description */
+    transform: translateY(-50%);
+}
+
+.banner-description {
+    font-size: 18px; /* Adjust the font size of the description */
+
+}
 
 
