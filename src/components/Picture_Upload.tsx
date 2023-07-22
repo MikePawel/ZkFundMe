@@ -39,14 +39,18 @@ function Picture_Upload({ onUpload }) {
   return (
     <div>
       {ipfs ? (
+
         <div className="imageUpload">
           {/* <h1>Upload your file</h1> */}
           {selectedImage && (
             <div>
               <img class="imageUpload" alt="not found"  width={"250px"}  src={URL.createObjectURL(selectedImage)} />
               <br />
+
             </div>
           )}
+
+          <div>
           <form onSubmit={onSubmitHandler} className="formContainer" >
 
             <input id="file-upload" type="file" name="file" className="fieldCreate"
@@ -56,7 +60,6 @@ function Picture_Upload({ onUpload }) {
                 }}
                    style={{ display: 'none' }}
              />
-
             <label htmlFor="file-upload" className="UploadField" >
               <IconButton component="span" className="uploadIconButton">
                 <UploadIcon />
@@ -68,8 +71,7 @@ function Picture_Upload({ onUpload }) {
               Upload To IPFS
             </button>
           </form>
-
-
+          </div>
         </div>
       ) : null}
     </div>

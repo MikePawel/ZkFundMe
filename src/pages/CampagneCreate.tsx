@@ -159,13 +159,13 @@ export default function CampagneCreate() {
         {/* <input type="text" placeholder="Enter Title" className="fieldCreate" /> */}
 
         {/* Description Field */}
+       <div className="containerCreate">
         <textarea
             placeholder="Enter Description"
             className="fieldCreate descriptionField"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        
 
         <input
             required
@@ -175,7 +175,6 @@ export default function CampagneCreate() {
             onChange={(e) => setWallet(e.target.value)}
             className="fieldCreate"
           />
-
 
         <div className="imageUpload" >
 
@@ -187,7 +186,7 @@ export default function CampagneCreate() {
           <button className="backButton">Back</button>
           <button className="nextButton">Next</button>
         </div>
-
+       </div>
 
     {/* Design ende */}
 
