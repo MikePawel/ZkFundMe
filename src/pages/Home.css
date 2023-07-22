@@ -50,7 +50,7 @@ body {
 .slider {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 70%;
     overflow-x: scroll;
 }
 .image-below-slider {
