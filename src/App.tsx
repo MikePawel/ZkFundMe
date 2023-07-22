@@ -20,7 +20,7 @@ const App = () => {
                 <div className="space-header"></div>
                 <Link to="/Home" className="logo-link">
                     <div className="logo">
-                        <img src="src/assets/LOGO.svg" alt="Logo" className="logo" />
+                        <img src="src/assets/logo.png" alt="Logo" className="logo" />
                     </div>
                 </Link>
             </div>
