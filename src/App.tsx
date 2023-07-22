@@ -15,9 +15,11 @@ const App = () => {
         <>
             <div className="header">
                 <div className="space-header"></div>
-                <div className="logo">
-                    <img src="src/assets/LOGO.svg" alt="Logo" className="logo"/>
-                </div>
+                <Link to="/Home" className="logo-link">
+                    <div className="logo">
+                        <img src="src/assets/LOGO.svg" alt="Logo" className="logo" />
+                    </div>
+                </Link>
             </div>
 
             <div className="content">
