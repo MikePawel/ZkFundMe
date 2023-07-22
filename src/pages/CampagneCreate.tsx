@@ -176,16 +176,24 @@ export default function CampagneCreate() {
   const createCampaign = async () => {
     try {
       // Create a new provider
-      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/a146daf63d93490995823f0910f50118");
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118");
       // Create a wallet instance
       const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-
+  
       const contract = getCampaignContract();
       const signer = contract.connect(wallet);
-
-      const result = await signer.createCampaign(title, description, zkwallet, ipfs, money);
+  
+      // Query the current gas price on the network
+      const gasPrice = await provider.getGasPrice();
+  
+      const overrides = {
+        maxFeePerGas: gasPrice.mul(2), // set max fee per gas as twice the current gas price
+        maxPriorityFeePerGas: gasPrice.div(2), // set max priority fee per gas as half the current gas price
+      };
+  
+      const result = await signer.createCampaign(title, description, zkwallet, ipfs, money, overrides);
       console.log("Campaign created: ", result);
-
+  
       setTitle("");
       setDescription("");
       setZkWallet("");
@@ -194,7 +202,7 @@ export default function CampagneCreate() {
     } catch (error) {
       console.error("An error occurred while creating the campaign: ", error);
     }
-  };
+  };  
 
   const handleUpload = (result: { path: any; }) => {
     const ipfsLink = result.path;
