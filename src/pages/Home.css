@@ -149,7 +149,7 @@ body {
     height: 500px;
     display: block;
     max-width: 100%;
-    object-fit: fill;
+    object-fit: contain;
 }
 
 

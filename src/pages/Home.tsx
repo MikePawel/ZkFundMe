@@ -136,13 +136,8 @@ export default function Home() {
     };
     return (
         <>
-            <nav className="navigation">
-                {/* Add your navigation links here */}
-            </nav>
-            {/* Add the banner here */}
-
             <div className="banner">
-                <img src="src/assets/bannerHome.svg"  alt="Banner" className="banner-image" />
+                    <img src="src/assets/bannerHome.png" alt="Banner" className="banner-image" />
             </div>
 
             <main className="content">
