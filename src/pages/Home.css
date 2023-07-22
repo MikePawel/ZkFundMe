@@ -98,6 +98,10 @@ body {
     object-fit: cover;
 }
 
+.banner-description p {
+    color: #213547;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -153,7 +157,6 @@ body {
     right: 0; /* Position the content to the right */
     transform: translateY(-120%); /* Center the content vertically using translation */
     text-align: right; /* Right align the text */
-    color: white; /* Set the text color */
     padding: 20px; /* Add some padding for better readability */
     width: 40%; /* Adjust the width of the content area */
     margin-right: 75px;
