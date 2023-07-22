@@ -139,12 +139,12 @@ export default function Home() {
             <nav className="navigation">
                 {/* Add your navigation links here */}
             </nav>
-            <main className="content">
-                {/* <img src="src/assets/logo.png" alt="Logo" className="logo" /> */}
-                <div className="pageTitle">
-                    <h2>Welcome to zkFundMe!</h2>
+            {/* Add the banner here */}
+            <div className="banner">
+                <img src="src/assets/bannerHome.svg"  alt="Banner" className="banner-image" />
+            </div>
 
-                </div>
+            <main className="content">
                 <Link to="/Create">
                     <button className="button" onClick={handleButtonClick}>
                         Start Your Own Campaign
@@ -169,6 +169,9 @@ export default function Home() {
           <button onClick={pay}> Pay with zero knowledge! </button>
         </>
       } */}
+                <div className="pageText">
+                    <h2>Here you can help - Featured topics:</h2>
+                </div>
                 <section className="slider">
                     {campaigns.slice().reverse().map(campaign => (
                         <div key={campaign.id}>
