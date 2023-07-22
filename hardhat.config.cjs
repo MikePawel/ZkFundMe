@@ -4,6 +4,7 @@ require("@nomiclabs/hardhat-waffle");
 INFURA_API_KEY_MUMBAI = "https://polygon-mumbai.infura.io/v3/a146daf63d93490995823f0910f50118"
 INFURA_API_KEY_SEPOLIA = "https://sepolia.infura.io/v3/a146daf63d93490995823f0910f50118"
 INFURA_API_KEY_CELO = "https://celo-alfajores.infura.io/v3/a146daf63d93490995823f0910f50118"
+INFURA_API_KEY_POLYGON = "https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118"
 
 PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
 
@@ -24,6 +25,10 @@ module.exports = {
     },
     celo: {
       url: `${INFURA_API_KEY_CELO}`,
+      accounts: [PRIVATE_KEY],
+    },
+    polygon: {
+      url: `${INFURA_API_KEY_POLYGON}`,
       accounts: [PRIVATE_KEY],
     },
   },

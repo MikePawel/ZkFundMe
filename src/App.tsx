@@ -25,7 +25,6 @@ const App = () => {
                 </Link>
             </div>
 
-            <div className="content">
                 <Routes>
                     <Route path="/Home" element={<Home />} />
                     <Route path="/Create" element={<CampagneCreate />} />
@@ -36,9 +35,9 @@ const App = () => {
                     <Route path="/Test/:id" element={<Test />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-            </div>
 
 
+<div>
                 <nav className="footer">
                     <ul>
                         <li>
@@ -61,6 +60,7 @@ const App = () => {
                         </li>
                     </ul>
                 </nav>
+</div>
         </>
     )
 }

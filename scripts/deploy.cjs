@@ -2,7 +2,14 @@ const hre = require("hardhat");
 
 async function main() {
   const DirectDeposit = await hre.ethers.getContractFactory("DirectDeposit");
-  const directDeposit = await DirectDeposit.deploy();
+
+  // Specify the deployment transaction parameters
+  const deploymentParameters = {
+    gasLimit: ethers.utils.hexlify(4000000),  // Adjust gas limit as needed
+    gasPrice: ethers.utils.parseUnits('100', 'gwei'),  // Adjust gas price as needed
+  };
+  
+  const directDeposit = await DirectDeposit.deploy(deploymentParameters);
 
   await directDeposit.deployed();
 
