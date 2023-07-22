@@ -21,7 +21,7 @@ export default function CampagneDetails() {
   const [campaignBalance, setCampaignBalance] = useState("0");
 
   const [walletConnected, setWalletConnected]= useState(false)
-  const YOUR_PRIVATE_KEY = "0x9aaf5e7e110837e3ecb7c07428ba91c5d5a485eaf625d8289a30110b051f3f51";
+  const YOUR_PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
 
   useEffect(() => {
     const getProvider = async () => {
