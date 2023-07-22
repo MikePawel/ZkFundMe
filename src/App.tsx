@@ -13,30 +13,6 @@ import TetsMetamask from './pages/TetsMetamask';
 const App = () => {
     return (
         <>
-            <nav className="navbar">
-                <ul>
-                    <li>
-                        <Link to="/Home">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/Create">Campagne Create</Link>
-                    </li>
-                    <li>
-                        <Link to="/Details">Campagne Details</Link>
-                    </li>
-                    <li>
-                        <Link to="/List">Campagne List</Link>
-                    </li>
-                    <li>
-                        <Link to="/Test">Test</Link>
-                    </li>
-                    <li>
-                        <Link to="/TestMetamask">TestMetamask</Link>
-                    </li>
-
-                </ul>
-            </nav>
-
             <div className="header">
                 <div className="space-header"></div>
                 <div className="logo">
@@ -44,18 +20,42 @@ const App = () => {
                 </div>
             </div>
 
-            <Routes>
-                
-                <Route path="/Home" element={<Home />} />
-                <Route path="/Create" element={<CampagneCreate />} />
-                {/* <Route path="/Details" element={<CampagneDetails />} /> */}
-                <Route path="/TestMetamask" element={<TetsMetamask/>}/>
-                <Route path="/Details/:id" element={<CampagneDetails/>}/>
+            <div className="content">
+                <Routes>
+                    <Route path="/Home" element={<Home />} />
+                    <Route path="/Create" element={<CampagneCreate />} />
+                    {/* <Route path="/Details" element={<CampagneDetails />} /> */}
+                    <Route path="/TestMetamask" element={<TetsMetamask/>}/>
+                    <Route path="/Details/:id" element={<CampagneDetails/>}/>
+                    <Route path="/List" element={<CampagneList />} />
+                    <Route path="/Test/:id" element={<Test />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </div>
 
-                <Route path="/List" element={<CampagneList />} />
-                <Route path="/Test/:id" element={<Test />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
+
+                <nav className="footer">
+                    <ul>
+                        <li>
+                            <Link to="/Home">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/Create">Campagne Create</Link>
+                        </li>
+                        <li>
+                            <Link to="/Details">Campagne Details</Link>
+                        </li>
+                        <li>
+                            <Link to="/List">Campagne List</Link>
+                        </li>
+                        <li>
+                            <Link to="/Test">Test</Link>
+                        </li>
+                        <li>
+                            <Link to="/TestMetamask">TestMetamask</Link>
+                        </li>
+                    </ul>
+                </nav>
         </>
     )
 }

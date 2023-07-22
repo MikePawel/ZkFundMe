@@ -26,27 +26,29 @@
   z-index: 9998; /* Set a z-index lower than the logo to keep it below the logo */
 }
 
-
 button {
   margin-top: 20px;
 }
 
-.navbar {
+
+.footer {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-
+  background-color: transparent;
+  padding: 10px;
 }
 
-.navbar li {
-  display: inline;
-  margin-right: 10px;
+.footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: left; /* Change justify-content to left */
+  padding: 0;
+  margin: 0;
 }
 
-.navbar li a {
-  text-decoration: none;
+.footer li {
+  padding: 5px;
 }
-
 
