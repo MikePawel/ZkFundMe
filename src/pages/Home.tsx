@@ -140,6 +140,7 @@ export default function Home() {
                 {/* Add your navigation links here */}
             </nav>
             {/* Add the banner here */}
+
             <div className="banner">
                 <img src="src/assets/bannerHome.svg"  alt="Banner" className="banner-image" />
             </div>
