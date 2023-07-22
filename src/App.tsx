@@ -36,31 +36,6 @@ const App = () => {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
 
-
-<div>
-                <nav className="footer">
-                    <ul>
-                        <li>
-                            <Link to="/Home">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/Create">Campagne Create</Link>
-                        </li>
-                        <li>
-                            <Link to="/Details">Campagne Details</Link>
-                        </li>
-                        <li>
-                            <Link to="/List">Campagne List</Link>
-                        </li>
-                        <li>
-                            <Link to="/Test">Test</Link>
-                        </li>
-                        <li>
-                            <Link to="/TestMetamask">TestMetamask</Link>
-                        </li>
-                    </ul>
-                </nav>
-</div>
         </>
     )
 }

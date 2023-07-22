@@ -202,6 +202,10 @@ export default function CampagneCreate() {
     } catch (error) {
       console.error("An error occurred while creating the campaign: ", error);
     }
+
+    window.location.replace('/Home');
+
+
   };
 
   const handleUpload = (result: { path: any; }) => {
