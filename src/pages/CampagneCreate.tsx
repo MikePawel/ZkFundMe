@@ -310,11 +310,6 @@ export default function CampagneCreate() {
               onChange={(e) => setZkWallet(e.target.value)}
             />
 
-            <div className="imageUpload" >
-
-              {ipfs != "" && <button onClick={createCampaign}>Create Campaign</button>}
-            </div>
-
 
 
 
@@ -323,7 +318,9 @@ export default function CampagneCreate() {
               <Link to="/Home">
                 <button className="backButton">Back</button>
               </Link>
-              <button className="nextButton">Next</button>
+
+              {ipfs != "" && <button className="nextButton" onClick={createCampaign}>Create Campaign</button>}
+
             </div>
           </div>
         </>}
