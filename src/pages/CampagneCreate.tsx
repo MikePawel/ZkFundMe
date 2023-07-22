@@ -45,16 +45,25 @@ export default function CampagneCreate() {
   const createCampaign = async () => {
     try {
       // Create a new provider
-      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/a146daf63d93490995823f0910f50118");
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-mainnet.infura.io/v3/a146daf63d93490995823f0910f50118");
       // Create a wallet instance
-      const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-
+      const walletM = new ethers.Wallet(PRIVATE_KEY, provider);
+  
       const contract = getCampaignContract();
-      const signer = contract.connect(wallet);
-
-      const result = await signer.createCampaign(title, description, wallet, ipfs, money);
+      const signer = contract.connect(walletM);
+  
+      // Estimate the gas price
+      let gasPrice = await provider.getGasPrice();
+      
+      // Define a transaction with the gas limit and gas price
+      let tx = {
+        gasLimit: ethers.utils.hexlify(1000000), // arbitrary limit, you need to adjust this value
+        gasPrice: gasPrice
+      };
+  
+      const result = await signer.createCampaign(title, description, wallet, ipfs, money, tx);
       console.log("Campaign created: ", result);
-
+  
       setTitle("");
       setDescription("");
       setWallet("");

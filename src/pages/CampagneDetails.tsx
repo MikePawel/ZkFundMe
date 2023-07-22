@@ -59,7 +59,7 @@ export default function CampagneDetails() {
           ipfs: campaignData[5],
         }
         setCampaign(campaign);
-        setCampaignBalance(ethers.utils.formatEther(balance.toString()));
+        setCampaignBalance(ethers.utils.formatUnits(balance.toString(), 6));
       } catch (err) {
         console.error(err);
       }
@@ -71,10 +71,19 @@ export default function CampagneDetails() {
   }, [campaignContract, id]);
 
   const pay = async () => {
-    let amount = ethers.utils.parseEther(payAmount);
+    let amount = ethers.utils.parseUnits(payAmount, 6); 
     let signer = contract.provider.getSigner();
+    let address = await signer.getAddress(); // get the address of the signer
+    console.log("Signer's Address:", address); // print the address
     let contractWithSigner = contract.connect(signer);
   
+    console.log("Amount (in wei):", amount.toString());
+    console.log("Campaign Wallet Address:", campaign.wallet);
+
+    let overrides = {
+      gasLimit: 250000,  // Increased gas limit
+  };
+
     contractWithSigner.tryPool(amount, campaign.wallet)
       .then(async (transaction: any) => {
         console.log(transaction);
@@ -83,10 +92,10 @@ export default function CampagneDetails() {
         let receipt = await transaction.wait();
         console.log('receipt: ', receipt);
   
-        // Now we're gonna call updateAmount with your private key
+      // Now we're gonna call updateAmount with your private key
         const yourWallet = new ethers.Wallet(YOUR_PRIVATE_KEY, contract.provider);
         const campaignContractWithYourWallet = campaignContract.connect(yourWallet);
-        transaction = await campaignContractWithYourWallet.updateAmount(Number(id), amount);
+        transaction = await campaignContractWithYourWallet.updateAmount(Number(id), amount, overrides);
         receipt = await transaction.wait();
         console.log('transaction hash for updateAmount: ', transaction.hash);
       })
