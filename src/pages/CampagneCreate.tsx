@@ -4,6 +4,8 @@ import { CredentialType, IDKitWidget, ISuccessResult } from "@worldcoin/idkit";
 import { getCampaignContract } from './ContractDetails';
 import Picture_Upload from '../components/Picture_Upload';
 import './CampagneCreate.css';
+import axios from 'axios';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 export default function CampagneCreate() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -17,6 +19,9 @@ export default function CampagneCreate() {
   // Define private key here for development or testing purposes ONLY
   const PRIVATE_KEY = "9aaf5e7e110837e3ecb7c07428ba91c5d5a485eaf625d8289a30110b051f3f51";
 
+  const worldAppID= import.meta.env.VITE_PUBLIC_WLD_APP_ID
+  const worldActionName= import.meta.env.VITE_PUBLIC_WLD_ACTION_NAME
+
   const handleProof = (result: ISuccessResult) => {
     return new Promise<void>((resolve) => {
       setTimeout(() => resolve(), 3000);
@@ -26,6 +31,10 @@ export default function CampagneCreate() {
   const onSuccess = (result: ISuccessResult) => {
     console.log("Successful Authentication");
     console.log(result);
+
+    // changed for on chain integration:
+    // handleVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
+    // newVerify(result.nullifier_hash, result.merkle_root, result.proof, result.credential_type)
     setAuthenticated(true);
   };
 
@@ -80,6 +89,70 @@ export default function CampagneCreate() {
     setUploadSuccess(true); // Set upload success to true after successful upload
   };
 
+
+  const handleVerify = (getNullifier_hash: any, getMerkle_root: any, getProof: any, getCredentialType: any) => {
+    const appId = worldAppID; // Replace 'YOUR_APP_ID' with the actual app ID
+
+    const requestData = {
+      nullifier_hash: getNullifier_hash,
+      merkle_root: getMerkle_root,
+      proof: getProof,
+      credential_type: getCredentialType,
+      action: "my_action",
+      signal: "my_signal"
+    };
+
+    axios.post(`https://developer.worldcoin.org/api/v1/verify/${appId}`, requestData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      // Handle the response here
+      console.log('Response:', response.data);
+    })
+    .catch(error => {
+      // Handle errors here
+      console.error('Error:', error);
+    });
+  }
+
+  // function newVerify(getNullifier_hash: any, getMerkle_root: any, getProof: any, getCredentialType: any){
+
+  //   const appId = worldAppID; 
+
+  //   const requestData = {
+  //     nullifier_hash: getNullifier_hash,
+  //     merkle_root: getMerkle_root,
+  //     proof: getProof,
+  //     credential_type: getCredentialType,
+  //     action: "my_action",
+  //     signal: "my_signal"
+  //   };
+
+  //   fetch(`https://developer.worldcoin.org/api/v1/verify/${appId}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(requestData), 
+  //   }).then((verifyRes) => {
+  //     verifyRes.json().then((wldResponse) => {
+  //       if (verifyRes.status == 200) {
+  //         // this is where you should perform backend actions based on the verified credential
+  //         // i.e. setting a user as "verified" in a database
+  //         res.status(verifyRes.status).send({ code: "success" });
+  //       } else {
+  //         // return the error code and detail from the World ID /verify endpoint to our frontend
+  //         res.status(verifyRes.status).send({ 
+  //           code: wldResponse.code, 
+  //           detail: wldResponse.detail 
+  //         });
+  //       }
+  //     });
+  //   });
+  // }
+
   return (
     <>
     {/* Hier der HTML Code fürs Design */}
@@ -98,13 +171,13 @@ export default function CampagneCreate() {
         {/* <input type="text" placeholder="Enter Title" className="fieldCreate" /> */}
 
         {/* Description Field */}
+       <div className="containerCreate">
         <textarea
             placeholder="Enter Description"
             className="fieldCreate descriptionField"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        
 
         <input
             required
@@ -115,7 +188,6 @@ export default function CampagneCreate() {
             className="fieldCreate"
           />
 
-
         <div className="imageUpload" >
 
         {ipfs!="" &&<button onClick={createCampaign}>Create Campaign</button>}
@@ -123,10 +195,12 @@ export default function CampagneCreate() {
 
         {/* Back and Next Buttons */}
         <div className="buttons">
+          <Link to="/Home">
           <button className="backButton">Back</button>
+          </Link>
           <button className="nextButton">Next</button>
         </div>
-
+       </div>
 
     {/* Design ende */}
 
@@ -136,64 +210,19 @@ export default function CampagneCreate() {
       </>}
       <div>money payed: {money}</div>
     {uploadSuccess && <p className="fieldCreate">Picture uploaded successfully!</p>} {/* Display success message if upload is successful */}
-      {/* {authenticated && (PASTE IN HERE THE CODE IF WORLDCOIN IS READY)} */}
-        {/* <div>
-          <Picture_Upload onUpload={handleUpload} />
-          <input
-          required
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-          required
-            type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <input
-            required
-            type="text"
-            placeholder="Wallet"
-            value={wallet} 
-            onChange={(e) => setWallet(e.target.value)} 
-          />
-
-          {ipfs!="" &&<button onClick={createCampaign}>Create Campaign</button>}
-        </div>
-      */}
-     
-     <div>
-     <IDKitWidget
-        action={action}
-        signal="my_signal"
-        onSuccess={onSuccess}
-        handleVerify={handleProof}
-        app_id={app_id}
-        credential_types={credential_types}
-      >
-        {({ open }) => {
-          if (openIDKit.current === null) openIDKit.current = open;
-          return null;
-        }}
-      </IDKitWidget> 
-
-     </div>
       
     </div>
 
-    {/* <div><IDKitWidget
-      app_id="app_GBkZ1KlVUdFTjeMXKlVUdFT" // obtained from the Developer Portal
-      action="vote_1" // this is your action name from the Developer Portal
+    <div><IDKitWidget
+      app_id={worldAppID} // obtained from the Developer Portal
+      action={worldActionName} // this is your action name from the Developer Portal
       signal="user_value" // any arbitrary value the user is committing to, e.g. a vote
       onSuccess={onSuccess}
       credential_types={['orb', 'phone']} // the credentials you want to accept
       enableTelemetry
     >
       {({ open }) => <button onClick={open}>Verify with World ID</button>}
-    </IDKitWidget></div> */}
+    </IDKitWidget></div>
 
     </>
   );
