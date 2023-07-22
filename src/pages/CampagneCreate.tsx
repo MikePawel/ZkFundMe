@@ -188,7 +188,7 @@ export default function CampagneCreate() {
 
       setTitle("");
       setDescription("");
-      setWallet("");
+      setZkWallet("");
       setIPFS("");
       setMoney(0);
     } catch (error) {
