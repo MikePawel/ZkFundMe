@@ -1,6 +1,12 @@
-# ZkFundMe - ETHGlobal Paris Hackathon 2023
+# ZkFundMe - ETHGlobal Paris Hackathon 2023 
 
-The demo video can be found [here](https://youtu.be/4d3CB1FAK2M).
+### Winning project of:
+- 1st price: 🥇 zkBob — Best Use
+- 2nd price: 🥈 Polygon — Best Public Good with Account Abstraction 
+- Worldcoin — Pool Prize
+
+[Linkt to submission.](https://ethglobal.com/showcase/zkfundme-amwst)
+
 
 ##  Short introduction
 
@@ -52,4 +58,6 @@ After everythin is done run this command:
 ```
   npm i
   npm run dev
-  ``` 
+  ```
+
+The demo video can be found [here](https://youtu.be/4d3CB1FAK2M).
