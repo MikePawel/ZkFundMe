@@ -92,12 +92,12 @@ export default function CampagneDetails() {
         let receipt = await transaction.wait();
         console.log('receipt: ', receipt);
   
-      // Now we're gonna call updateAmount with your private key
-        const yourWallet = new ethers.Wallet(YOUR_PRIVATE_KEY, contract.provider);
-        const campaignContractWithYourWallet = campaignContract.connect(yourWallet);
-        transaction = await campaignContractWithYourWallet.updateAmount(Number(id), amount, overrides);
-        receipt = await transaction.wait();
-        console.log('transaction hash for updateAmount: ', transaction.hash);
+      // Now we're gonna call updateAmount 
+        //const yourWallet = new ethers.Wallet(YP, contract.provider);
+       // const campaignContractWithYourWallet = campaignContract.connect(yourWallet);
+       // transaction = await campaignContractWithYourWallet.updateAmount(Number(id), amount, overrides);
+        //receipt = await transaction.wait();
+       // console.log('transaction hash for updateAmount: ', transaction.hash);
       })
       .catch((error: any) => {
         console.log(error);
